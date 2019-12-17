@@ -1388,7 +1388,7 @@ table#tcat td {
 
 /* compare */
 
-#tcompare {
+/* #tcompare {
   border-collapse: collapse;
 }
 
@@ -1401,7 +1401,7 @@ table#tcat td {
   border-width: 0px 1px;
   padding: 4px 10px;
   min-width: 250px;
-}
+} */
 
 .catalog-title {
   margin-top: 2rem;
@@ -1418,7 +1418,7 @@ table#tcat td {
 
 .catalog-tool-container {
   min-height: 80vh;
-  padding: 2rem;
+  padding: 0;
 }
 
 .catalog-tool {
