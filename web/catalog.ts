@@ -123,7 +123,7 @@ function histogramDraw(
   }
   if (data.length <= 1) {
     histogramRemove();
-    $('#hist').text('No data for histogram');
+    $("#hist").text("No data for histogram");
     return;
   }
 
@@ -149,7 +149,9 @@ function histogramDraw(
       }
     };
     const rendery = render_funct(heatmap);
-    (<Highcharts.TooltipOptions>opts.tooltip).formatter = function(this: Highcharts.TooltipFormatterContextObject): string {
+    (<Highcharts.TooltipOptions>opts.tooltip).formatter = function(
+      this: Highcharts.TooltipFormatterContextObject
+    ): string {
       const p = this.point;
       return (
         "[" +
@@ -351,8 +353,7 @@ function ajax(data: any, callback: (data: any) => void, opts: any) {
             res.aggregations.hist as AggrTerms<number>,
             res.histsize
           );
-        else
-          $('#hist').text('No data for histogram');
+        else $("#hist").text("No data for histogram");
       }
       delete query.aggs;
       delete query.hist;
@@ -425,7 +426,10 @@ abstract class Filter {
 
   constructor(public field: Field) {
     this.tcol = TCat.column(this.name + ":name");
-    this.label = field_title(this.field, this.field.flag ? undefined : this.remove.bind(this));
+    this.label = field_title(
+      this.field,
+      this.field.flag ? undefined : this.remove.bind(this)
+    );
   }
 
   get name(): string {
@@ -441,7 +445,12 @@ abstract class Filter {
   protected add(
     ...nodes: Array<JQuery.TypeOrArray<JQuery.Node | JQuery<JQuery.Node>>>
   ) {
-    add_filt_row(this.field.name, this.field.flag !== undefined, this.label, ...nodes);
+    add_filt_row(
+      this.field.name,
+      this.field.flag !== undefined,
+      this.label,
+      ...nodes
+    );
     this.addopt.disabled = true;
     Filters.push(this);
   }
@@ -564,7 +573,8 @@ class NumericFilter extends Filter {
     else this.lb.value = <any>aggs.min;
     if (this.ub.disabled) this.ub.disabled = false;
     else this.ub.value = <any>aggs.max;
-    this.avg.textContent = aggs.avg == null ? 'no data' : render_funct(this.field)(aggs.avg);
+    this.avg.textContent =
+      aggs.avg == null ? "no data" : render_funct(this.field)(aggs.avg);
   }
 
   change() {
@@ -572,8 +582,8 @@ class NumericFilter extends Filter {
   }
 
   query(): string {
-    const lbv = isFinite(this.lbv) ? this.lbv.toString() : '';
-    const ubv = isFinite(this.ubv) ? this.ubv.toString() : '';
+    const lbv = isFinite(this.lbv) ? this.lbv.toString() : "";
+    const ubv = isFinite(this.ubv) ? this.ubv.toString() : "";
     if (lbv == ubv) return lbv;
     else return lbv + " " + ubv;
   }

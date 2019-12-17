@@ -3,5 +3,6 @@ http {
 }
 elasticsearch {
   server = "http://astrosims-es:9200/"
+  #server = "http://127.0.0.1:9200/"
 }
 dev = true

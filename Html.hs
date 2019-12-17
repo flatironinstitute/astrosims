@@ -82,6 +82,7 @@ htmlResponse req hdrs body = do
         H.link H.! HA.rel "stylesheet" H.! HA.type_ "text/css" H.! HA.href (staticURI src)
       H.script H.! HA.type_ "text/javascript" H.! HA.src "//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML" $ mempty
       H.link H.! HA.rel "stylesheet" H.! HA.type_ "text/css" H.! HA.href "https://fonts.googleapis.com/css?family=Major+Mono+Display|Montserrat"
+      H.script H.! HA.type_ "text/javascript" H.! HA.async "true" H.! HA.src "//api.usersnap.com/load/dd9dc7ec-fc9d-424c-86c4-34007085fcf1.js" $ mempty
       jsonVar "Catalogs" (HM.map catalogTitle $ catalogMap cats)
     H.body $ do
       H.div H.! HA.class_ "modal-container hidden"  H.! HA.id "progress-modal" $ do
@@ -110,8 +111,6 @@ htmlResponse req hdrs body = do
               H.div H.! HA.class_ "dropdown-content dropdown-second" $ do
                 forM_ (catalogsSorted cats) $ \(key, cat) ->
                   H.a H.! HA.href (WH.routeActionValue catalogPage key mempty) $ H.text (catalogTitle cat)
-            H.li H.! HA.class_ "header__link" $ do
-              H.a H.! HA.href (WH.routeActionValue comparePage [] mempty) $ "Compare"
             H.li H.! HA.class_ "header__link" $ do
               H.a H.! HA.href (WH.routeActionValue staticHtml ["about"] mempty) $ "About"
       H.div H.! HA.class_ "container container--main" $ do
