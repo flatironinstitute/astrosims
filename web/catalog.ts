@@ -546,12 +546,14 @@ class NumericFilter extends Filter {
 
   constructor(field: Field) {
     super(field);
+    console.log("🐶", field, this);
     this.lb = this.makeBound(false);
     this.ub = this.makeBound(true);
     this.avg = document.createElement("span");
     this.min = document.createElement("span");
     this.max = document.createElement("span");
     this.avg.innerHTML = "<em>loading...</em>";
+    // Adds HTML for Min/Max
     this.add(
       $("<span>")
         .append(this.lb)
@@ -562,7 +564,7 @@ class NumericFilter extends Filter {
         .append(" &ndash; ")
         .append(this.max),
       $("<span><em>&mu;</em> = </span>").append(this.avg),
-      $("<button>Reset</button>").on("click", this.reset.bind(this))
+      $("<button>🔄</button>").on("click", this.reset.bind(this))
     );
   }
 

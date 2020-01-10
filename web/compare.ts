@@ -415,6 +415,7 @@ class NumericFilter extends Filter {
 }
 
 function update_fields() {
+  console.log("UPDATE FEIELDS");
   const asel = <HTMLSelectElement>document.getElementById("addf");
   const csel = <HTMLSelectElement>document.getElementById("compf");
   while (asel.lastChild) asel.removeChild(asel.lastChild);
@@ -522,10 +523,9 @@ function update_comp(...comps: Compare[]) {
 (<any>window).compField = update_comp;
 
 function selectCat(sel: HTMLSelectElement) {
-  const tsel = <HTMLTableCellElement>sel.parentElement;
+  const tsel = <HTMLTableHeaderCellElement>sel.parentElement;
   const idx = tsel.cellIndex - 1;
   const rsel = <HTMLTableRowElement>tsel.parentElement;
-  console.log("sel", sel, "rsel", rsel, "tsel", tsel);
   const cat = Catalogs[sel.value];
   const cur = Compares[idx];
   if (cur && !cat) {
@@ -538,7 +538,8 @@ function selectCat(sel: HTMLSelectElement) {
   if (cur) cur.remove();
   let n = rsel.cells.length - 1;
   if (Compares.length >= n && n < Max_compare)
-    rsel.insertCell().appendChild(sel.cloneNode(true));
+    console.log("🐖", "rsel", rsel, "sel", sel);
+  rsel.insertCell().appendChild(sel.cloneNode(true));
   update_fields();
 }
 (<any>window).selectCat = selectCat;

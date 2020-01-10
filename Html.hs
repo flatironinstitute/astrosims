@@ -474,9 +474,10 @@ comparePage = getPath ("compare" R.*< R.manyI R.parameter) $ \path req -> do
         H.div H.! HA.class_ "container-fluid" $ do
           H.div H.! HA.class_ "row" $ do
             H.div H.! HA.class_ "col col-sm-12 col-md-12" $ do
-              H.table H.! HA.id "tcompare" H.! HA.class_ "table table-striped table-bordered" $ do
+              H.table H.! HA.class_ "table table-bordered" H.! HA.id "tcompare" $ do
                 H.thead H.! HA.class_ "thead-dark" $ do
                   H.tr $ do
+                    H.th ""
                     H.th $ H.select H.! HA.name "selcat" H.! HA.onchange "return selectCat(event.target)" $ do
                       H.option H.! HA.value mempty H.! HA.selected "selected" $ "Choose catalog..."
                       forM_ (catalogsSorted cats) $ \(sim, cat) ->
@@ -489,8 +490,9 @@ comparePage = getPath ("compare" R.*< R.manyI R.parameter) $ \path req -> do
                     H.td $ H.select H.! HA.id "compf" H.! HA.onchange "return compField()" $ mempty
               H.button H.! HA.id "hist-tog" H.! HA.disabled "disabled" H.! HA.onclick "return histogramComp()" $ "histogram"
               H.div H.! HA.id "dhist" $ do
-                H.button H.! HA.id "hist-y-tog" H.! HA.onclick "return toggleLog()" $
-                  "Toggle lin/log"
+                H.div H.! HA.id "hist-y" $
+                  H.button H.! HA.id "hist-y-tog" H.! HA.onclick "return toggleLog()" $
+                    "lin/log"
                 H.div H.! HA.id "hist" $ mempty
 
 
