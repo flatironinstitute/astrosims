@@ -753,7 +753,11 @@ export function initCatalog(table: JQuery<HTMLTableElement>) {
 }
 
 // highcharts-data-table
-// function onElementInserted(containerSelector, elementSelector, callback) {
+// export function onElementInserted(
+//   containerSelector: any,
+//   elementSelector: any,
+//   callback: any
+// ) {
 //   var onMutationsObserved = function (mutations) {
 //     mutations.forEach(function (mutation) {
 //       if (mutation.addedNodes.length) {
